@@ -48,11 +48,14 @@ public class MainUGUI : Main
         if (!base.isEngineRunning) return;
 
         base.Update();
-        float rpm = base.GetRPM();
+
         // There is an offset visually, so add offset to roughly match
-        rpm = Retarget(rpm, 0f, 1f, 0.15f, 0.85f);
-        fillImage.fillAmount = rpm;
-        rpmText.text = (base.GetRPM() * 8000).ToString("0000");
+        float visualRpm = Retarget(base.GetRPM(), 0f, 1f, 0.15f, 0.85f);
+        fillImage.fillAmount = visualRpm;
+
+        // Remap rpm (0-1) to (1000-8000)
+        float textRpm = Retarget(base.GetRPM(), 0f, 1f, 1000f, 8000f);
+        rpmText.text = textRpm.ToString("0000");
     }
     
     #region EventHandlers

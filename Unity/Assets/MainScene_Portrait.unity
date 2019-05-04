@@ -124,11 +124,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainScreenUI
       objectReference: {fileID: 0}
-    - target: {fileID: 7885515853936173415, guid: ed98f1505418a7540bb8c3e51ab7668b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2211139030333209697, guid: ed98f1505418a7540bb8c3e51ab7668b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -319,26 +314,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2219476220993814243, guid: ed98f1505418a7540bb8c3e51ab7668b,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7821148268732052380, guid: ed98f1505418a7540bb8c3e51ab7668b,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643360491354274591, guid: ed98f1505418a7540bb8c3e51ab7668b,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643360491354274591, guid: ed98f1505418a7540bb8c3e51ab7668b,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4862585276148046855, guid: ed98f1505418a7540bb8c3e51ab7668b,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -348,6 +323,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 337547540125177968, guid: ed98f1505418a7540bb8c3e51ab7668b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00024414062
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980727574309539171, guid: ed98f1505418a7540bb8c3e51ab7668b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00024414062
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed98f1505418a7540bb8c3e51ab7668b, type: 3}
@@ -721,6 +706,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c7bd59887c74d2eae7a01823717e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  texture: {fileID: 0}
+  angle: 0
+  size: {x: 128, y: 128}
+  ScreenpointToAlign: 0
+  relativePosition: {x: 0, y: 0}
+  centreOffset: {x: 0, y: 0}
 --- !u!1 &2034924072
 GameObject:
   m_ObjectHideFlags: 0
