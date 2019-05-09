@@ -482,6 +482,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c7bd59887c74d2eae7a01823717e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  texture: {fileID: 0}
+  angle: 0
+  size: {x: 128, y: 128}
+  ScreenpointToAlign: 0
+  relativePosition: {x: 0, y: 0}
+  centreOffset: {x: 0, y: 0}
 --- !u!1001 &1822717787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -609,16 +615,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1382615423128085490, guid: 420b6ecc697063846b402c3cdcaca5d9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7023201245400329869, guid: 420b6ecc697063846b402c3cdcaca5d9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1799966933316341026, guid: 420b6ecc697063846b402c3cdcaca5d9,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -650,16 +646,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8779185624929673047, guid: 420b6ecc697063846b402c3cdcaca5d9,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561335033052851057, guid: 420b6ecc697063846b402c3cdcaca5d9,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561335033052851057, guid: 420b6ecc697063846b402c3cdcaca5d9,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
