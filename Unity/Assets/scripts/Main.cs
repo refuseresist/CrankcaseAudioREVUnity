@@ -10,6 +10,7 @@ using UnityEngine.Audio;
 public class Main : MonoBehaviour
 {
     public static String appVersion = "0.0";
+    public static Main instance;
 
     //public AudioMixer audioMixer;
     protected CrankcaseAudio.Unity.REVEnginePlayer engineSimulator { get; private set; }
@@ -58,6 +59,7 @@ public class Main : MonoBehaviour
     public void Initialize()
     {
         Debug.Log("Starting up REV");
+        instance = this;
 
         //Size to the largest model you have, in bytes, as well as the number of instances you will want.
         try
@@ -115,7 +117,7 @@ public class Main : MonoBehaviour
         }
     }
 
-    public void LoadEngine (string enginName)
+    public void LoadEngine (string engineName)
     {
         appVersion = REVEnginePlayer.VERSION;
 
@@ -148,7 +150,7 @@ public class Main : MonoBehaviour
 #if APPSTORE
         fileBasePath = "encrypted\\" + fileBasePath;
 #endif
-        var filePath = "engines\\" + fileBasePath + enginName;
+        var filePath = "engines\\" + fileBasePath + engineName;
 
         Debug.Log ("Load Engine: " + filePath);
         

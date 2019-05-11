@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainUGUI : Main
 {
     [Header("UI")]
+    public Button selectCarButton;
     public Slider volumeSlider;
     public Slider pitchSlider;
     public Slider throttleSlider;
@@ -14,9 +15,14 @@ public class MainUGUI : Main
     public TMPro.TextMeshProUGUI rpmText;
     public Animator animator;
 
+    private CarSelectionManager carSelectionManager;
+
     private IEnumerator Start()
     {
         base.Initialize();
+        carSelectionManager = FindObjectOfType<CarSelectionManager>();
+        carSelectionManager.Initialize();
+        carSelectionManager.onSelectItem += CarSelectionManager_onSelectItem;
 
         pitchSlider.minValue = 0.8f;
         pitchSlider.maxValue = 1.2f;
@@ -28,6 +34,7 @@ public class MainUGUI : Main
         volumeSlider.value = 0.8f;
 
         // Add handlers after setting initial values
+        selectCarButton.onClick.AddListener(SelectButton_OnClick);
         pitchSlider.onValueChanged.AddListener(PitchSlider_OnValueChanged);
         volumeSlider.onValueChanged.AddListener(VolumeSlider_OnValueChanged);
         throttleSlider.onValueChanged.AddListener(ThrottleSlider_OnValueChanged);
@@ -50,15 +57,26 @@ public class MainUGUI : Main
         base.Update();
 
         // There is an offset visually, so add offset to roughly match
-        float visualRpm = Retarget(base.GetRPM(), 0f, 1f, 0.15f, 0.85f);
+        float visualRpm = HelperFunctions.Retarget(base.GetRPM(), 0f, 1f, 0.15f, 0.85f);
         fillImage.fillAmount = visualRpm;
 
         // Remap rpm (0-1) to (1000-8000)
-        float textRpm = Retarget(base.GetRPM(), 0f, 1f, 1000f, 8000f);
+        float textRpm = HelperFunctions.Retarget(base.GetRPM(), 0f, 1f, 1000f, 8000f);
         rpmText.text = textRpm.ToString("0000");
     }
-    
+
     #region EventHandlers
+
+    private void CarSelectionManager_onSelectItem(object sender, CarSelectionItem.CarEventArgs e)
+    {
+        base.LoadEngine(e.car.fileName);
+        carSelectionManager.Toggle(false);
+    }
+
+    private void SelectButton_OnClick()
+    {
+        carSelectionManager.Toggle(true);
+    }
 
     private void VolumeSlider_OnValueChanged(float arg0)
     {
@@ -76,38 +94,17 @@ public class MainUGUI : Main
         float throttle = 0;
         if (arg0 >= 0f)
         {
-            throttle = Retarget(arg0, 0f, 0.7f, 0f, 1f);
+            throttle = HelperFunctions.Retarget(arg0, 0f, 0.7f, 0f, 1f);
         }
         float breaking = 0f;
         if (arg0 < 0f)
         {
             arg0 *= -1f;
-            breaking = Retarget(arg0, 0f, 0.3f, 0f, 1f);
+            breaking = HelperFunctions.Retarget(arg0, 0f, 0.3f, 0f, 1f);
         }
         base.SetThrottle(throttle, breaking);
     }
 
     #endregion
 
-
-    public static float Retarget(float value, float currentMin, float currentMax, float targetMin, float targetMax, bool clamp = true)
-    {
-        float temp = value;
-
-        // Normalize
-        temp -= currentMin;
-        temp /= (currentMax - currentMin);
-
-        // if (clamp)
-        //    temp = Mathf.Clamp(temp, 0, 1);
-
-        // Retarget
-        temp *= (targetMax - targetMin);
-        temp += targetMin;
-
-        if (clamp)
-            temp = Mathf.Clamp(temp, targetMin, targetMax);
-
-        return temp;
-    }
 }

@@ -2401,12 +2401,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab5bc0d847c690479b2f7a199d2565c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectCarButton: {fileID: 346530105674640879}
   volumeSlider: {fileID: 976005910845904807}
   pitchSlider: {fileID: 8130902493457600511}
   throttleSlider: {fileID: 7588482066641429815}
   fillImage: {fileID: 6789242103603541789}
   rpmText: {fileID: 3482048500830626298}
   animator: {fileID: 1755160325}
+  selectCarParent: {fileID: 892658706866342880}
 --- !u!95 &1755160325
 Animator:
   serializedVersion: 3
