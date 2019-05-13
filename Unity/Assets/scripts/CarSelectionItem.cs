@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,16 +10,19 @@ public class CarSelectionItem : MonoBehaviour
     public event EventHandler<CarEventArgs> onSelect;
 
     [Header("UI")]
-    public Text titleText;
-    public Text subtitleText;
+    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI subtitleText;
     public Image carImage;
     public Image grayscaleImage;
+    public Image textOverlayImage;
+    public Image borderImage;
     public Button selectButton;
     public CanvasGroup cg;
 
     public Car car;
 
     private Color originalFontColor;
+    private float originalOverlayAlpha;
 
     /// <summary>
     /// Update item from Car
@@ -43,6 +47,7 @@ public class CarSelectionItem : MonoBehaviour
         });
 
         originalFontColor = titleText.color;
+        originalOverlayAlpha = textOverlayImage.color.a;
     }
 
     public void SetDummy()
@@ -65,8 +70,8 @@ public class CarSelectionItem : MonoBehaviour
         distance *= 2f;
 
         grayscaleImage.color = new Color(1f, 1f, 1f, distance);
-        titleText.color = Color.Lerp(originalFontColor, Color.gray, distance);
-        subtitleText.color = Color.Lerp(originalFontColor, Color.gray, distance);
+        textOverlayImage.color = new Color(textOverlayImage.color.r, textOverlayImage.color.g, textOverlayImage.color.b, (1-distance) * originalOverlayAlpha);
+        borderImage.color = new Color(borderImage.color.r, borderImage.color.g, borderImage.color.b, 1 - distance);
     }
 
     /// <summary>

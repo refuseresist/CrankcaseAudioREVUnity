@@ -80,7 +80,7 @@ public static class IOHelper
     {
         if (!File.Exists(file))
         {
-            Debug.LogError("Image doesn't exist\n" + file);
+            Debug.LogWarning("Car image doesn't exist\n" + file);
             yield break;
         }
 

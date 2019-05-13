@@ -25,7 +25,14 @@ public class CarSelectionManager : MonoBehaviour
         string configFile = string.Format("{0}\\{1}", Application.streamingAssetsPath, configFilename);
         cars = IOHelper.ReadConfigFile(configFile);
         CreateCarList();
+        ScrollTo(1);
         this.gameObject.SetActive(false);
+    }
+
+    public void ScrollTo(int index)
+    {
+        float segment = 1f / (scrollRect.content.transform.childCount - 4);
+        scrollRect.verticalScrollbar.value = 1 - segment * index;
     }
 
     public void Toggle(bool show)

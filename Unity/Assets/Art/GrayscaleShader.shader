@@ -15,6 +15,7 @@
 
 		[Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip("Use Alpha Clip", Float) = 0
 		[Toggle] _UseGrayscale("Use Grayscale", Float) = 0
+		_Brightness("Brighness", Range(0, 1)) = 1
 	}
 
 		SubShader
@@ -81,6 +82,7 @@
 				float4 _ClipRect;
 				float4 _MainTex_ST;
 				float _UseGrayscale;
+				float _Brightness;
 
 				v2f vert(appdata_t v)
 				{
@@ -108,6 +110,9 @@
 					clip(color.a - 0.001);
 					#endif
 					float grayscale = (color.r + color.b + color.g) / 3.0;
+
+					// Dim brightness
+					grayscale *= _Brightness;
 
 					return (_UseGrayscale == 0.0) ? color : half4(grayscale, grayscale, grayscale, color.a);
 				}
