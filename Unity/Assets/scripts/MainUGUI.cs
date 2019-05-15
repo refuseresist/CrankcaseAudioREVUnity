@@ -65,12 +65,18 @@ public class MainUGUI : Main
         rpmText.text = textRpm.ToString("0000");
     }
 
+    private IEnumerator StartEngineDelay(CarSelectionItem.CarEventArgs e, float delay = 0.5f)
+    {
+        yield return new WaitForSeconds(delay);
+        carSelectionManager.Toggle(false);
+        base.LoadEngine(e.car.fileName);
+    }
+
     #region EventHandlers
 
     private void CarSelectionManager_onSelectItem(object sender, CarSelectionItem.CarEventArgs e)
     {
-        base.LoadEngine(e.car.fileName);
-        carSelectionManager.Toggle(false);
+        StartCoroutine(StartEngineDelay(e, 0.5f));
     }
 
     private void SelectButton_OnClick()

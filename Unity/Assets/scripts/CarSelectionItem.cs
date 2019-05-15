@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CarSelectionItem : MonoBehaviour
+public class CarSelectionItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public event EventHandler<CarEventArgs> onSelect;
 
@@ -20,6 +21,7 @@ public class CarSelectionItem : MonoBehaviour
     public CanvasGroup cg;
 
     public Car car;
+    public bool isSelected { get; private set; }
 
     private Color originalFontColor;
     private float originalOverlayAlpha;
@@ -50,13 +52,7 @@ public class CarSelectionItem : MonoBehaviour
         originalOverlayAlpha = textOverlayImage.color.a;
     }
 
-    public void SetDummy()
-    {
-        car = new Car("dummy.model", "dummy", "sample.jpg", "");
-        cg.alpha = 0;
-    }
-
-    private void FixedUpdate()
+    private float GetRelativeDistanceFromCenter()
     {
         // Get relative screen position (0-1)
         Vector2 screenPosRelative = this.transform.position / new Vector2(Screen.width, Screen.height);
@@ -68,10 +64,26 @@ public class CarSelectionItem : MonoBehaviour
         distance = Mathf.Abs(distance);
         // Narrow wideness
         distance *= 2f;
+        return distance;
+    }
+    
+    public void SetSelected(bool isSelected)
+    {
+        this.isSelected = isSelected;
+        SetGrayscale((isSelected) ? 0f : 1f);
+    }
 
-        grayscaleImage.color = new Color(1f, 1f, 1f, distance);
-        textOverlayImage.color = new Color(textOverlayImage.color.r, textOverlayImage.color.g, textOverlayImage.color.b, (1-distance) * originalOverlayAlpha);
-        borderImage.color = new Color(borderImage.color.r, borderImage.color.g, borderImage.color.b, 1 - distance);
+    public void SetHover(bool hover)
+    {
+        if (isSelected) return;
+        SetGrayscale((hover) ? 0f : 1f);
+    }
+
+    public void SetGrayscale(float grayscale)
+    {
+        grayscaleImage.color = new Color(1f, 1f, 1f, grayscale);
+        textOverlayImage.color = new Color(textOverlayImage.color.r, textOverlayImage.color.g, textOverlayImage.color.b, (1 - grayscale) * originalOverlayAlpha);
+        borderImage.color = new Color(borderImage.color.r, borderImage.color.g, borderImage.color.b, 1 - grayscale);
     }
 
     /// <summary>
@@ -80,6 +92,16 @@ public class CarSelectionItem : MonoBehaviour
     public string GetImagePath(string imageName)
     {
         return string.Format("{0}\\Images\\{1}", Application.streamingAssetsPath, imageName);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SetHover(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SetHover(false);
     }
 
     public class CarEventArgs : EventArgs

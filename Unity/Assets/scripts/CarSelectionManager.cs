@@ -18,26 +18,54 @@ public class CarSelectionManager : MonoBehaviour
 
     private List<Car> cars = new List<Car>();
     private List<CarSelectionItem> carItems = new List<CarSelectionItem>();
-    
+
+    private float scrollAnimationDuration = 0.3f;
+    private Coroutine scrollAnimationCR = null;
+
     public void Initialize()
     {
         backButton.onClick.AddListener(BackButton_OnClick);
         string configFile = string.Format("{0}\\{1}", Application.streamingAssetsPath, configFilename);
         cars = IOHelper.ReadConfigFile(configFile);
         CreateCarList();
-        ScrollTo(1);
+        FocusItem(carItems[0]);
         this.gameObject.SetActive(false);
     }
 
-    public void ScrollTo(int index)
+    private void ScrollTo(int index)
     {
+        if (scrollAnimationCR != null)
+            StopCoroutine(scrollAnimationCR);
+        scrollAnimationCR = StartCoroutine(ScrollToAnim(index));
+    }
+
+    private IEnumerator ScrollToAnim(int index)
+    {
+        float timeStarted = Time.time;
         float segment = 1f / (scrollRect.content.transform.childCount - 4);
-        scrollRect.verticalScrollbar.value = 1 - segment * index;
+
+        float initialValue = scrollRect.verticalScrollbar.value;
+        float targetValue = 1 - segment * index;
+        while (Time.time - timeStarted <= scrollAnimationDuration)
+        {
+            float lerp = (Time.time - timeStarted) / scrollAnimationDuration;
+            scrollRect.verticalScrollbar.value = Mathf.Lerp(initialValue, targetValue, lerp);
+            yield return null;
+        }
     }
 
     public void Toggle(bool show)
     {
         this.gameObject.SetActive(show);
+    }
+
+    private void FocusItem(CarSelectionItem item)
+    {
+        for (int i = 0; i < carItems.Count; i++)
+        {
+            carItems[i].SetSelected(item == carItems[i]);
+        }
+        ScrollTo(item.transform.GetSiblingIndex() - 1);
     }
 
     private void CreateCarList()
@@ -57,26 +85,17 @@ public class CarSelectionManager : MonoBehaviour
 
             carItems.Add(item);
         }
-
-        // Create GameObject listing
-        CarSelectionItem item1 = GameObject.Instantiate(carSelectionItemPrefab).GetComponent<CarSelectionItem>();
-        item1.SetDummy();
-        item1.transform.SetParent(carSelectionParent.transform);
-        item1.transform.SetAsFirstSibling();
-
-        // Create GameObject listing
-        CarSelectionItem item2 = GameObject.Instantiate(carSelectionItemPrefab).GetComponent<CarSelectionItem>();
-        item2.SetDummy();
-        item2.transform.SetParent(carSelectionParent.transform);
-        item2.transform.SetAsLastSibling();
     }
 
     private void Item_onSelect(object sender, CarSelectionItem.CarEventArgs e)
     {
-        if(onSelectItem != null)
+        if (onSelectItem != null)
         {
             onSelectItem(sender, e);
         }
+
+        CarSelectionItem item = sender as CarSelectionItem;
+        FocusItem(item);
     }
 
     private void BackButton_OnClick()
