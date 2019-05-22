@@ -19,7 +19,7 @@ public class CarSelectionManager : MonoBehaviour
     private List<Car> cars = new List<Car>();
     private List<CarSelectionItem> carItems = new List<CarSelectionItem>();
 
-    private float scrollAnimationDuration = 0.3f;
+    private float scrollAnimationDuration = 0.7f;
     private Coroutine scrollAnimationCR = null;
 
     public void Initialize()
@@ -28,7 +28,6 @@ public class CarSelectionManager : MonoBehaviour
         string configFile = string.Format("{0}\\{1}", Application.streamingAssetsPath, configFilename);
         cars = IOHelper.ReadConfigFile(configFile);
         CreateCarList();
-        FocusItem(carItems[0]);
         this.gameObject.SetActive(false);
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CarSelectionItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CarSelectionItem : MonoBehaviour
 {
     public event EventHandler<CarEventArgs> onSelect;
 
@@ -73,12 +73,6 @@ public class CarSelectionItem : MonoBehaviour, IPointerEnterHandler, IPointerExi
         SetGrayscale((isSelected) ? 0f : 1f);
     }
 
-    public void SetHover(bool hover)
-    {
-        if (isSelected) return;
-        SetGrayscale((hover) ? 0f : 1f);
-    }
-
     public void SetGrayscale(float grayscale)
     {
         grayscaleImage.color = new Color(1f, 1f, 1f, grayscale);
@@ -92,16 +86,6 @@ public class CarSelectionItem : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public string GetImagePath(string imageName)
     {
         return string.Format("{0}\\Images\\{1}", Application.streamingAssetsPath, imageName);
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        SetHover(true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        SetHover(false);
     }
 
     public class CarEventArgs : EventArgs
