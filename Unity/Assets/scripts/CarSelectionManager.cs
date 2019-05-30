@@ -81,6 +81,7 @@ public class CarSelectionManager : MonoBehaviour
             item.Initialize(cars[i]);
             item.onSelect += Item_onSelect;
             item.transform.SetParent(carSelectionParent.transform);
+            item.transform.localScale = Vector3.one;
 
             carItems.Add(item);
         }
