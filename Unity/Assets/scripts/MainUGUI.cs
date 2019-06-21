@@ -14,6 +14,8 @@ public class MainUGUI : Main
     public Image fillImage;
     public TMPro.TextMeshProUGUI rpmText;
     public Animator animator;
+    public GameObject popUpWindow;
+    public SubMenuSlider subMenuSlider;
 
     private CarSelectionManager carSelectionManager;
 
@@ -38,6 +40,8 @@ public class MainUGUI : Main
         pitchSlider.onValueChanged.AddListener(PitchSlider_OnValueChanged);
         volumeSlider.onValueChanged.AddListener(VolumeSlider_OnValueChanged);
         throttleSlider.onValueChanged.AddListener(ThrottleSlider_OnValueChanged);
+
+        ShowPopUp(false);
 
         // Wait animation to end
         float animationDuration = this.animator.GetCurrentAnimatorStateInfo(0).length;
@@ -70,6 +74,19 @@ public class MainUGUI : Main
         yield return new WaitForSeconds(delay);
         carSelectionManager.Toggle(false);
         base.LoadEngine(e.car.fileName);
+    }
+
+    public void ShowPopUp(bool show)
+    {
+        // Hide menu for NonMobile
+        if (!Application.isMobilePlatform && show)
+            subMenuSlider.ToggleSlide();
+        popUpWindow.SetActive(show);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     #region EventHandlers

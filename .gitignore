@@ -9,6 +9,7 @@ Obj/
 UnityGenerated/
 Library
 *.orig
+Build/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
