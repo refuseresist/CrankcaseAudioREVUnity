@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 31383109}
-  - component: {fileID: 31383111}
   - component: {fileID: 31383110}
   - component: {fileID: 31383112}
+  - component: {fileID: 2857819739578439906}
   m_Layer: 5
   m_Name: Pivot
   m_TagString: Untagged
@@ -35,34 +35,11 @@ RectTransform:
   m_Father: {fileID: 488721489}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -0.17007446, y: 0}
-  m_SizeDelta: {x: 390.17, y: 80}
-  m_Pivot: {x: 0, y: 0.5}
---- !u!114 &31383111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31383108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 2
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 3
-  m_Spacing: 6.25
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0.00010681152}
+  m_SizeDelta: {x: 170, y: 151.57}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &31383110
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -84,6 +61,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationDuration: 0.3
+--- !u!114 &2857819739578439906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31383108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 9
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: -5.93
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 0
 --- !u!1 &488721488
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,11 +118,11 @@ RectTransform:
   m_Father: {fileID: 2698746109625528034}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.1, y: 0}
-  m_SizeDelta: {x: 390.17, y: 0}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -90, y: -0.000061035156}
+  m_SizeDelta: {x: 90, y: 151.57}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &488721492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -205,10 +205,10 @@ RectTransform:
   m_Father: {fileID: 1607184378}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.09271978, y: 0.34449074}
+  m_AnchorMax: {x: 0.9072802, y: 0.65550923}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1232.8, y: 335.9}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &526807846
 CanvasRenderer:
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 48.9
+  m_fontSize: 32.45
   m_fontSizeBase: 51.13
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -313,7 +313,7 @@ MonoBehaviour:
     spaceCount: 17
     wordCount: 23
     linkCount: 0
-    lineCount: 6
+    lineCount: 7
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 620240630}
   - component: {fileID: 620240629}
   m_Layer: 5
-  m_Name: SelectCarButton (1)
+  m_Name: MenuAboutButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -533,7 +533,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160.19, y: 45.45}
+  m_SizeDelta: {x: 0, y: 48.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &620240632
 CanvasRenderer:
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 1305122920}
   - component: {fileID: 1305122919}
   m_Layer: 5
-  m_Name: SelectCarButton (2)
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -675,7 +675,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160.19, y: 45.45}
+  m_SizeDelta: {x: 0, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1305122922
 CanvasRenderer:
@@ -1431,7 +1431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00024414062}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3868829223079024090
@@ -1826,7 +1826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00024414062}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4836918713715517146
@@ -2591,7 +2591,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 31383112}
+      - m_Target: {fileID: 1824853429028178357}
         m_MethodName: ToggleSlide
         m_Mode: 1
         m_Arguments:

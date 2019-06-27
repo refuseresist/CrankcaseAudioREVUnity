@@ -84,6 +84,18 @@ public class MainUGUI : Main
         popUpWindow.SetActive(show);
     }
 
+    public void ToggleSlide()
+    {
+        if (Application.isMobilePlatform)
+        {
+            popUpWindow.SetActive(true);
+        }
+        else
+        {
+            subMenuSlider.ToggleSlide();
+        }
+    }
+
     public void Quit()
     {
         Application.Quit();

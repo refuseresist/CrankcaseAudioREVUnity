@@ -7,11 +7,11 @@ public class SubMenuSlider : MonoBehaviour
     public float animationDuration = 0.5f;
 
     bool isShown = false;
-    float size { get { return (this.transform as RectTransform).sizeDelta.x; } }
+    float size { get { return (this.transform as RectTransform).sizeDelta.y; } }
 
     private void Awake()
     {
-        SetPosX(-size);
+        SetPosY(-size);
     }
 
     public void ToggleSlide()
@@ -33,13 +33,13 @@ public class SubMenuSlider : MonoBehaviour
         {
             float lerp = (Time.time - timeStarted) / animationDuration;
 
-            float newX = 0;
+            float newY = 0;
             if (on)
-                newX = Mathf.Lerp(-size, 0, lerp);
+                newY = Mathf.Lerp(-size, 0, lerp);
             else
-                newX = Mathf.Lerp(0, -size, lerp);
+                newY = Mathf.Lerp(0, -size, lerp);
 
-            SetPosX(newX);
+            SetPosY(-newY);
 
             if (lerp >= 1f)
                 break;
@@ -51,5 +51,10 @@ public class SubMenuSlider : MonoBehaviour
     private void SetPosX(float x)
     {
         this.transform.localPosition = new Vector3(x, this.transform.localPosition.y, this.transform.localPosition.z);
+    }
+
+    private void SetPosY(float y)
+    {
+        this.transform.localPosition = new Vector3(this.transform.localPosition.x, y, this.transform.localPosition.z);
     }
 }
